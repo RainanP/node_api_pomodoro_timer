@@ -8,6 +8,10 @@ const server = express();
 server.use(express.json());
 server.use(cors()); // Se eu não usar esse cors, ele bloqueia o acesso do meu site, e aí não consigo conectar os dois, isso desbloqueia
 
+server.get("/", async (req, res) => {
+  res.status(200).json({ status: "ok" })
+})
+
 server.post("/registro", async (req, res) => {
   const hashedpassword = await bcrypt.hash(req.body.password, 10); // Cria um hash da senha que venho na request
   try {
